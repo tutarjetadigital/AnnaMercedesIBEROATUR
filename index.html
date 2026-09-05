@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Digital - Canciller Anna Mercedes Lembke | IBEROATUR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-green: #15803d;
+            --brand-green-dark: #07160e;
+            --brand-gold: #d97706;
+            --bg-dark: #05110a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(rgba(34, 197, 94, 0.1) 1.2px, transparent 1.2px),
+                radial-gradient(rgba(217, 119, 6, 0.12) 1.2px, transparent 1.2px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: #0f172a;
+        }
+
+        .serif-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Contenedor tipo Tarjeta Profesional Móvil */
+        .card-container {
+            width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(34, 197, 94, 0.15);
+        }
+
+        @media (min-width: 480px) {
+            .card-container {
+                max-width: 450px;
+                margin: 2rem auto;
+                min-height: auto;
+                border-radius: 28px;
+                overflow: hidden;
+                border: 1px solid rgba(34, 197, 94, 0.35);
+            }
+        }
+
+        /* BANNER SUPERIOR OFICIAL - VISIBILIDAD TOTAL */
+        .banner-container {
+            width: 100%;
+            background-color: #05110a;
+            position: relative;
+            border-bottom: 2.5px solid #15803d;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Sección del contenido de la tarjeta */
+        .content-section {
+            background: linear-gradient(180deg, #ffffff 0%, #f8faf6 100%);
+            position: relative;
+            padding-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        /* Contenedor de la foto de perfil */
+        .profile-container {
+            position: relative;
+            width: 124px;
+            height: 124px;
+            margin: -20px auto 0 auto;
+            z-index: 10;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            border: 3.5px solid #15803d;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 4px #ffffff;
+            background: #0f5127;
+            padding: 2px;
+            object-fit: cover;
+        }
+
+        /* Insignia Oficial */
+        .verification-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: linear-gradient(135deg, #15803d 0%, #0f5127 100%);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        /* Tarjeta de información de contacto */
+        .info-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 0.9rem 1.1rem;
+            transition: all 0.2s ease;
+        }
+        .info-card:hover {
+            border-color: #15803d;
+            box-shadow: 0 4px 14px rgba(21, 128, 61, 0.08);
+        }
+
+        /* Notificación Toast */
+        .toast-notification {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-0 sm:p-4">
+
+    <div class="card-container">
+        
+        <!-- Franja institucional superior -->
+        <div class="h-1.5 w-full bg-gradient-to-r from-emerald-800 via-amber-500 to-green-900"></div>
+
+        <!-- BARRA INSTITUCIONAL Y COMPARTIR -->
+        <div class="bg-slate-950 px-4 py-2 flex items-center justify-between border-b border-emerald-950">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-globe-americas text-emerald-400 text-xs"></i>
+                <span class="text-[10px] font-extrabold text-slate-200 tracking-widest uppercase serif-font">IBEROATUR</span>
+            </div>
+            <button onclick="shareCard()" class="text-slate-300 hover:text-emerald-400 p-1.5 rounded-lg transition-colors text-xs flex items-center gap-1.5 font-semibold" title="Compartir Tarjeta">
+                <i class="fas fa-share-alt"></i>
+                <span class="text-[10px]">Compartir</span>
+            </button>
+        </div>
+
+        <!-- BANNER OFICIAL CON VISIBILIDAD 100% COMPLETA SIN RECORTES -->
+        <div class="banner-container">
+            <img src="https://i.postimg.cc/XJWZ5k70/Whats-App-Image-2026-09-04-at-4-15-31-PM.jpg" 
+                 alt="IBEROATUR - Instituto Iberoamericano de Turismo Rural" 
+                 class="banner-img" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/800x250/05110a/ffffff?text=IBEROATUR';" />
+        </div>
+
+        <div class="content-section">
+            <div class="flex flex-col items-center px-5 text-center">
+                
+                <!-- Foto de Perfil Oficial Ubicada Cuidadoamente -->
+                <div class="profile-container">
+                    <div class="relative w-full h-full rounded-full overflow-hidden">
+                        <img src="https://i.postimg.cc/85GFvmPS/Whats-App-Image-2026-09-04-at-4-21-36-PM.jpg" 
+                             alt="Anna Mercedes Lembke - Canciller IBEROATUR" 
+                             class="profile-pic"
+                             onerror="this.onerror=null; this.src='https://placehold.co/300x300/15803d/ffffff?text=Anna+Lembke';" />
+                    </div>
+                </div>
+
+                <!-- Nombre y Cargo Diplomático -->
+                <div class="mt-3.5 flex flex-col items-center justify-center">
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight serif-font">Anna Mercedes Lembke</h1>
+                    
+                    <div class="inline-flex items-center mt-2 bg-emerald-50/90 px-4 py-1 rounded-full border border-emerald-300/80 shadow-sm">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-950">
+                            Canciller
+                        </span>
+                    </div>
+
+                    <p class="text-xs font-bold text-amber-900 mt-2 tracking-wide uppercase">
+                        Instituto Iberoamericano de Turismo Rural
+                    </p>
+
+                    <!-- Títulos Académicos Diplomáticos (Sin Íconos) -->
+                    <div class="mt-3 flex flex-wrap justify-center gap-1.5 max-w-xs">
+                        <span class="text-[10px] font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-md shadow-sm">
+                            Magíster en Marketing
+                        </span>
+                        <span class="text-[10px] font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-md shadow-sm">
+                            Administradora de Empresas
+                        </span>
+                        <span class="text-[10px] font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-md shadow-sm">
+                            Historiadora de Arte
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Lema Institucional -->
+                <p class="text-xs font-medium text-slate-600 tracking-normal mt-3.5 text-center max-w-xs leading-relaxed italic">
+                    Comprometidos con los Objetivos de Desarrollo Sostenible
+                </p>
+
+                <!-- TRAYECTORIA DESTACADA Y LIDERAZGO -->
+                <div class="w-full mt-6 space-y-3 text-left">
+                    
+                    <!-- Fundadora y Activista -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <span class="block text-[10px] font-extrabold text-emerald-900 uppercase tracking-wider">Liderazgo & Activismo</span>
+                        <p class="text-xs font-bold text-slate-800 mt-1 leading-relaxed">
+                            Activista y Fundadora de la Asociación de Turismo Rural y Comunitario de Guatemala (<span class="text-emerald-800">ASOTURGUA</span>)
+                        </p>
+                    </div>
+
+                    <!-- Conferencista Internacional -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <div class="mb-2.5 pb-2 border-b border-slate-100">
+                            <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">Conferencista Internacional</span>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-700 font-medium">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-700 font-bold">•</span>
+                                <span>Comercio Exterior</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-700 font-bold">•</span>
+                                <span>Hotelería y Desarrollo Económico de empresas y comunidades rurales</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-700 font-bold">•</span>
+                                <span>Desarrollo de Destinos turísticos, rutas y circuitos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-700 font-bold">•</span>
+                                <span>Perfil de turistas rurales a nivel local e internacional</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- INFORMACIÓN DE CONTACTO OFICIAL (CON ÍCONOS) -->
+                <div class="w-full mt-6 space-y-2.5 text-left">
+                    <div class="flex items-center justify-between px-1 pb-1 border-b border-slate-200">
+                        <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest">Información Institucional</span>
+                        <span class="text-[10px] font-extrabold text-emerald-900 bg-emerald-100/80 px-2 py-0.5 rounded">Oficial</span>
+                    </div>
+
+                    <!-- Teléfono Directo -->
+                    <div class="info-card flex items-center gap-3.5">
+                        <div class="p-2.5 rounded-lg bg-slate-50 text-emerald-800 border border-slate-200 flex-shrink-0">
+                            <i class="fas fa-phone text-xs"></i>
+                        </div>
+                        <div class="min-w-0 flex-grow">
+                            <span class="block text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Teléfono Institucional</span>
+                            <span class="block text-xs font-extrabold text-slate-900 tracking-wide">
+                                +502 4154 7480
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Correo Electrónico Institucional -->
+                    <div class="info-card flex items-center gap-3.5">
+                        <div class="p-2.5 rounded-lg bg-slate-50 text-amber-800 border border-slate-200 flex-shrink-0">
+                            <i class="fas fa-envelope text-xs"></i>
+                        </div>
+                        <div class="min-w-0 flex-grow">
+                            <span class="block text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Correo Electrónico</span>
+                            <a href="mailto:cancilleria@iberoatur.org" class="block text-xs font-extrabold text-slate-900 hover:text-emerald-700 transition-colors truncate">
+                                cancilleria@iberoatur.org
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sitio Web Oficial -->
+                    <div class="info-card flex items-center gap-3.5">
+                        <div class="p-2.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200 flex-shrink-0">
+                            <i class="fas fa-globe text-xs"></i>
+                        </div>
+                        <div class="min-w-0 flex-grow">
+                            <span class="block text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Sitio Web Oficial</span>
+                            <a href="https://www.iberoatur.org" target="_blank" rel="noopener noreferrer" class="block text-xs font-extrabold text-slate-900 hover:text-emerald-700 transition-colors truncate">
+                                www.iberoatur.org
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen Institucional IBEROATUR (CON ÍCONO PERMITIDO) -->
+                <div class="w-full bg-white border border-slate-200 rounded-xl p-4 mt-6 text-left text-xs shadow-sm">
+                    <div class="flex items-center gap-2 mb-2 pb-2 border-b border-slate-100">
+                        <i class="fas fa-leaf text-emerald-700 text-xs"></i>
+                        <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">Acerca de IBEROATUR</span>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed font-medium">
+                        El Instituto Iberoamericano de Turismo Rural articula la cooperación entre instituciones públicas, privadas y comunidades rurales para promover la sostenibilidad, el desarrollo económico y la valorización del patrimonio agroalimentario en Iberoamérica.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Diplomático -->
+        <div class="bg-slate-950 text-center py-4 px-4 text-[11px] font-medium border-t border-slate-800 text-slate-400">
+            <p class="flex items-center justify-center gap-1.5">
+                <i class="fas fa-globe-americas text-emerald-400 text-xs"></i>
+                <span class="font-bold text-emerald-400 serif-font">IBEROATUR</span> 
+                <span>• Cancillería</span>
+            </p>
+            <p class="text-[10px] text-slate-500 mt-1">Instituto Iberoamericano de Turismo Rural.</p>
+        </div>
+    </div>
+
+    <!-- Toast de Notificación -->
+    <div id="toast" class="toast-notification fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white font-bold px-5 py-2.5 rounded-full text-xs shadow-2xl z-50 flex items-center gap-2 border border-emerald-500/40">
+        <i class="fas fa-check-circle text-emerald-400"></i>
+        <span id="toast-message">Copiado al portapapeles</span>
+    </div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Canciller Anna Mercedes Lembke - IBEROATUR',
+                    text: 'Tarjeta digital oficial de la Canciller Anna Mercedes Lembke (IBEROATUR)',
+                    url: window.location.href
+                }).catch(() => {
+                    copyToClipboard(window.location.href, "Enlace copiado al portapapeles");
+                });
+            } else {
+                copyToClipboard(window.location.href, "Enlace copiado al portapapeles");
+            }
+        }
+
+        function copyToClipboard(text, customMessage) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(customMessage || "Copiado al portapapeles");
+            } catch (err) {
+                showToast("No se pudo copiar");
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
